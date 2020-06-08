@@ -19,7 +19,7 @@ const Points = () => {
 
   useEffect(() => {
     api.get('items').then(response => {
-      
+      setItems(response.data);
     })
   }, [])
 
@@ -72,35 +72,12 @@ const Points = () => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ paddingHorizontal: 20 }}
           >
-        <TouchableOpacity style={styles.item} onPress={() => {}}>
-          <SvgUri width={42} height={42} uri='http://10.0.0.11:3333/uploads/lampadas.svg' />
-          <Text style={styles.itemTitle}>Lamps</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item} onPress={() => {}}>
-          <SvgUri width={42} height={42} uri='http://10.0.0.11:3333/uploads/lampadas.svg' />
-          <Text style={styles.itemTitle}>Lamps</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item} onPress={() => {}}>
-          <SvgUri width={42} height={42} uri='http://10.0.0.11:3333/uploads/lampadas.svg' />
-          <Text style={styles.itemTitle}>Lamps</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item} onPress={() => {}}>
-          <SvgUri width={42} height={42} uri='http://10.0.0.11:3333/uploads/lampadas.svg' />
-          <Text style={styles.itemTitle}>Lamps</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item} onPress={() => {}}>
-          <SvgUri width={42} height={42} uri='http://10.0.0.11:3333/uploads/lampadas.svg' />
-          <Text style={styles.itemTitle}>Lamps</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item} onPress={() => {}}>
-          <SvgUri width={42} height={42} uri='http://10.0.0.11:3333/uploads/lampadas.svg' />
-          <Text style={styles.itemTitle}>Lamps</Text>
-        </TouchableOpacity>
+        {items.map(item => (
+          <TouchableOpacity key={String(item.id)} style={styles.item} onPress={() => {}}>
+            <SvgUri width={42} height={42} uri={item.image_url} />
+            <Text style={styles.itemTitle}>{item.title}</Text>
+          </TouchableOpacity>
+        ))}
         </ScrollView>
       </View>
     </SafeAreaView>
